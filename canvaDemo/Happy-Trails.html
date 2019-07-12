@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Happy-Trails</title>
+    <style>
+        canvas {
+            border: 1px solid #000000;
+        }
+    </style>
+</head>
+<body>
+    <canvas id='canvas' width="400" height="600"></canvas>
+</body>
+    <script type="text/javaScript">
+
+        // 绘制树叶树枝路径
+        function createCanopyPath(context) {
+            context.beginPath(); // 开启路径
+
+            context.moveTo(-25, -50);
+            context.lineTo(-10, -80);
+            context.lineTo(-20, -80);
+            context.lineTo(-5, -110);
+            context.lineTo(-15, -110);
+
+            context.lineTo(0, -140);
+
+            context.lineTo(15, -110);
+            context.lineTo(5, -110);
+            context.lineTo(20, -80);
+            context.lineTo(10, -80);
+            context.lineTo(25, -50);
+
+            context.closePath(); // 闭合路径
+        }
+        // 绘制树
+        function drawTree(context) {
+            
+            // 树叶
+            createCanopyPath(context);
+            context.strokeStyle='#663300';
+            context.lineWidth=4;
+            context.lineJoin='round'; // miter：支教 | bevel：斜角 | round：圆角
+            context.transform(1, 0, 0, 1, 0, 0);
+            context.scale(1.0, 1.0); // 1表示原比例;（X轴缩放量，Y轴缩放量）
+            context.stroke();
+            context.fillStyle='#339900';
+            context.fill();
+            
+            // 树干
+            // 横向颜色线性渐变 createLinearGradient(x1, y1, x2, y2) 从第一个点到第二个点的线性渐变
+            var trunkGradient = context.createLinearGradient(-5, 0, 5, 0);
+            // .addColorStop(偏移量, 'color');
+            trunkGradient.addColorStop(0, '#663300');
+            trunkGradient.addColorStop(0.4, '#996600');
+            trunkGradient.addColorStop(1, '#552200');
+            
+            context.fillStyle = trunkGradient;
+            context.fillRect(-5, -50, 10, 50);
+
+            // 纵向透明度线性渐变
+            var trunkAlphaGradient = context.createLinearGradient(0, -50, 0, 0);
+            trunkAlphaGradient.addColorStop(0, 'rgba(0, 0, 0, 0.5)');
+            trunkAlphaGradient.addColorStop(0.2, 'rgba(0, 0, 0, 0)');
+            context.fillStyle=trunkAlphaGradient;
+            context.fillRect(-5, -50, 10, 50);
+            
+            // 倒影
+            context.transform(1, 0, -0.5, 1, 0, 0);
+            context.scale(1.0, 0.6); // 1表示原比例;（X轴缩放量，Y轴缩放量）
+            context.fillStyle='rgba(0, 0, 0, 0.2)';
+            context.fillRect(-5, -50, 10, 50);
+            createCanopyPath(context);
+            context.fill();
+
+        }
+
+        // 绘制封面
+        function drawTrails() {
+            var canvas = document.getElementById("canvas");
+            var context = canvas.getContext("2d");
+
+            // 小树
+            context.save(); // 在绘图状态堆上保存当前绘图状态
+            context.translate(130, 250); // cavans的原点移动到指定的一个点
+            drawTree(context);
+            context.restore();
+
+            // 大树
+            context.save(); // 在绘图状态堆上保存当前绘图状态
+            context.translate(260, 500); // cavans的原点移动到指定的一个点
+            context.scale(2.0, 2); // 1表示原比例;（X轴缩放量，Y轴缩放量）
+            drawTree(context);
+            context.restore();
+
+            // 碎石路
+            context.save();
+            context.beginPath();
+            context.translate(-10, 350);
+            context.moveTo(0, 0);
+            context.quadraticCurveTo(200, 50, 270, -190); // 二次贝塞尔曲线
+            context.quadraticCurveTo(290, -260, 410, -250); // 二次贝塞尔曲线
+            context.strokeStyle = context.createPattern(gravel, 'repeat');
+            context.lineWidth = 20;
+            context.stroke();
+            context.closePath(); // 闭合路径
+            context.restore();
+
+            // 文字
+            context.save();
+            context.font='60px impact'; // impact 是一款自带撕边特效的英文字体
+            context.textAlign='center';
+            context.fillStyle='#996600';
+            // context.fillText(文字内容, 横坐标, 纵坐标, 文字最大显示宽度); 以文字内容的中心点为参考，按照（x,y）移动文字
+            context.fillText('Happy-Trails', 200, 60, 400);
+            
+            // 文字倒影
+            context.transform(1, 0, -0.5, 1, 0, 0);
+            context.scale(1.0, 0.8); // 1表示原比例;（X轴缩放量，Y轴缩放量）
+            context.fillStyle='rgba(0, 0, 0, 0.2)';
+            context.fillText('Happy-Trails', 230, 80, 400);
+            
+            context.restore();
+        }
+
+        var gravel = new Image();
+        gravel.src = '../imgs/gravel.jpg';
+        gravel.onload = function() {
+            drawTrails();
+        }
+    </script>
+</html>

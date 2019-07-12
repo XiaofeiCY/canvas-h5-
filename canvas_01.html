@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <canvas id='canvas' width="1000" height="800"></canvas>
+</body>
+    <script type="text/javascript">
+        // 纸
+        var canvas = document.getElementById('canvas');
+        // 笔
+        var context = canvas.getContext("2d"); // 绘制2d图像
+        // 墨汁
+        //   --即指定绘制样式：1、绘制线：stroke(); 2、填充：fill()（注意：决定使用哪种方式之后，在填充或者绘制线之前先设置样式（就好比画图之前得蘸墨汁））
+        // 如果使用的是填充样式绘制，填充风格使用的是fillStyle;如果使用线条绘制，使用strokeStyle（其他操作同理）
+        context.strokeStyle = "#666666"; // 返回当前绘制形状的风格
+        // 绘制
+        context.strokeRect(100, 100, 200, 100); // (横坐标，纵坐标，宽度，高度) 使用当前给定的线风格，绘制一个盒子区域
+
+        // 绘制实心矩形
+        context.fillStyle = '#11c0ff';
+        context.fillRect(300, 300, 200, 200); // 用当前的填充风格填充给定的区域
+
+
+        // 绘制三角形
+        context.moveTo(500, 100);
+        context.lineTo(500, 300);
+        context.lineTo(700, 300);
+        context.lineTo(500, 100);
+        // context.strokeStyle = "#ff0000"; (后面的样式会叠加在前面的样式之上，如果后面不修改的样式，那就会沿用前面的样式)
+        context.lineWidth = 10;
+        context.stroke(); // 以线条方式
+        context.fill(); // 以填充方式
+
+        // 绘制圆
+        context.strokeStyle = "rgba(118, 91, 192, 0.575)";
+        context.beginPath();
+        // arc(横坐标, 纵坐标, 半径, 起始角度, 终止角度, 绘制方向);
+        context.arc(100, 300, 50, 0, Math.PI * 2, false); // false 顺时针;true 逆时针
+        context.closePath();
+        context.stroke();
+
+        // 绘制图片
+        var image = new Image();
+        image.src = "./imgs/pic1.jfif";
+        image.onload = function () {
+            // 显示图片
+            // drawImage(路径, 横坐标, 纵坐标, 宽度, 高度);
+            context.drawImage(image, 550, 350, 300, 400);
+        }
+    </script>
+</html>
