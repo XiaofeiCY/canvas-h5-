@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .box{
+            width: 1000px;
+            height: 500px;
+            background-color:#369;
+            position:relative;
+        }
+        .box>span{
+            display: block;
+            width: 10px;
+            height: 10px;
+            background-color:#963;
+            position:absolute;
+            top:230px
+        }
+        .box>.zz{
+            width: 3px;
+            height: 3px;
+            background-color:red;
+            position:absolute;
+        }
+        canvas {
+            background-color: #369;
+        }
+        .temp {
+            width: 100px;
+            height: 100px;
+            background-color: rgb(109, 43, 134);
+            margin-left: 30px;
+        }
+    </style>
+</head>
+<body>
+    <canvas id='canvas' width="1000" height="1000"></canvas>
+</body>
+    <script type="text/javaScript">
+        var canvas = document.getElementById("canvas");
+        var context = canvas.getContext('2d');
+        // context.moveTo(50, 200);
+        var x = 50;
+        var y = 200;
+        var a = setInterval(function() {
+            aaa();
+        }, 17);
+        function drawRectAngle(x, y) {
+            context.lineTo(x, y);
+            context.lineWidth = 10;
+            context.stroke();
+        }
+        function aaa() {
+            context.clearRect(0, 0, 1000, 1000);
+            if (x >= 1000) {
+                // context.closePath();
+                context.moveTo(50, 200);
+                x = 50;
+                y = 200;
+                clearInterval(a);
+                setTimeout(function () {
+                    var a = setInterval(function() {
+                        aaa();
+                    }, 1000);
+                }, 15);
+            } else {
+                x += 1;
+                if (x < 100) {
+                    drawRectAngle(x, y);
+                } else if (parseInt(x / 50, 10) % 2 === 0) {
+                    y += 1;
+                    drawRectAngle(x, y);
+                } else {
+                    y -= 1;
+                    drawRectAngle(x, y);
+                }
+            }
+        }
+    </script>
+</html>

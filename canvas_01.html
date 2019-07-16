@@ -7,7 +7,7 @@
     <title>Document</title>
 </head>
 <body>
-    <canvas id='canvas' width="1000" height="800"></canvas>
+    <canvas id='canvas' width="1000" height="1000"></canvas>
 </body>
     <script type="text/javascript">
         // 纸
@@ -52,5 +52,45 @@
             // drawImage(路径, 横坐标, 纵坐标, 宽度, 高度);
             context.drawImage(image, 550, 350, 300, 400);
         }
+
+        // 绘制波浪线
+        context.beginPath();
+        context.moveTo(50, 800);
+        context.lineTo(150, 800);
+        context.lineTo(155, 795);
+        context.lineTo(160, 805);
+        context.lineTo(165, 790);
+        context.lineTo(170, 810);
+        context.lineTo(175, 785);
+        context.lineTo(180, 815);
+        context.lineTo(185, 760);
+        context.lineTo(190, 840);
+        context.lineTo(195, 785);
+        context.lineTo(200, 810);
+        context.lineTo(205, 790);
+        context.lineTo(210, 805);
+        context.lineTo(215, 795);
+        context.lineTo(220, 800);
+        context.lineTo(320, 800);
+        // context.lineTo(225, 800);
+        context.lineWidth = 2;
+        context.stroke(); // 以线条方式
+        context.closePath();
+
+        // setInterval(() => {
+        //     console.log('???');
+        //     context.clearRect(0,0,10,10);
+		// 	context.fillRect(0,0,10,10);
+        //     context.beginPath();
+        //     for (var index = 0; index < 10; index++) {
+        //         context.fillRect(50 + index, 790, 20, 20);
+        //     }
+        //     context.fill();
+        //     context.closePath();
+        // }, 1500);
+        context.beginPath();
+        context.fillRect(50, 790, 20, 20);
+        context.fill();
+        context.closePath();
     </script>
 </html>
