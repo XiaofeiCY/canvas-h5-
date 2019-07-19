@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        canvas {
+            background-color: aqua;
+        }
+    </style>
+</head>
+<body>
+    <canvas id='canvas' width="700" height="500"></canvas>
+</body>
+    <script type="text/javaScript">
+        var canvas = document.getElementById("canvas");
+        var context = canvas.getContext('2d');
+        // context.moveTo(50, 200);
+        var x = 0;
+        var y = 200;
+        var t = false;
+        var p = true;
+        var q = 0;
+        var a = setInterval(function() {
+            recycle();
+        }, 17);
+        function recycle() {
+            x += 1;
+            mainWayStyle();
+            if (t) {
+                context.clearRect(x, 0, 3, 1000);
+            }
+            if (x >= 700) {
+                context.moveTo(0, 200);
+                x = 0;
+                y = 200;
+                t = true;
+                clearInterval(a);
+                context.beginPath();
+                a = setInterval(function() {
+                    recycle();
+                }, 17);
+                context.closePath();
+            }
+        }
+        function drawRectAngle(x, y) {
+            context.lineTo(x, y);
+            // quadraticCurveTo(20, 100, x, y);
+            context.lineWidth = 2;
+            context.lineJoin='round';
+            context.stroke();
+        }
+        function wayType1() {
+            if (x <= 50) {
+                drawRectAngle(x, y);
+            } else if ( x > 50 && x <= 65) {
+                y -= 1;
+                drawRectAngle(x, y);
+            } else if ( x > 65 && x <= 80) {
+                y += 3;
+                drawRectAngle(x, y);
+            } else if ( x > 80 && x <= 95) {
+                y -= 5;
+                drawRectAngle(x, y);
+            } else if ( x > 95 && x <= 110) {
+                y += 7;
+                drawRectAngle(x, y);
+            } else if ( x > 110 && x <= 125) {
+                y -= 9;
+                drawRectAngle(x, y);
+            } else if ( x > 125 && x <= 140) {
+                y += 9;
+                drawRectAngle(x, y);
+            } else if ( x > 140 && x <= 155) {
+                y -= 7;
+                drawRectAngle(x, y);
+            } else if ( x > 155 && x <= 170) {
+                y += 5;
+                drawRectAngle(x, y);
+            } else if ( x > 170 && x <= 185) {
+                y -= 3;
+                drawRectAngle(x, y);
+            } else if ( x > 185 && x <= 199) {
+                y += 1;
+                drawRectAngle(x, y);
+            } else if ( x > 199 && x <= 329) {
+                drawRectAngle(x, y);
+            } else if ( x > 329 && x <= 340) {
+                y -= 2;
+                drawRectAngle(x, y);
+            } else if ( x > 340 && x <= 355) {
+                y += 3;
+                drawRectAngle(x, y);
+            } else if ( x > 355 && x <= 363) {
+                y -=3;
+                drawRectAngle(x, y);
+            } else {
+                drawRectAngle(x, y);
+            }
+            // if ( x > 50 && x <= 65) {
+            //     y -= 1;
+            //     drawRectAngle(x, y);
+            // } else if ( x > 65 && x <= 80) {
+            //     y += 3;
+            //     drawRectAngle(x, y);
+            // } else if ( x > 80 && x <= 95) {
+            //     y -= 5;
+            //     drawRectAngle(x, y);
+            // } else if ( x > 95 && x <= 110) {
+            //     y += 7;
+            //     drawRectAngle(x, y);
+            // } else if ( x > 110 && x <= 125) {
+            //     y -= 9;
+            //     drawRectAngle(x, y);
+            // } else if ( x > 125 && x <= 140) {
+            //     y += 9;
+            //     drawRectAngle(x, y);
+            // } else if ( x > 140 && x <= 155) {
+            //     y -= 7;
+            //     drawRectAngle(x, y);
+            // } else if ( x > 155 && x <= 170) {
+            //     y += 5;
+            //     drawRectAngle(x, y);
+            // } else if ( x > 170 && x <= 185) {
+            //     y -= 3;
+            //     drawRectAngle(x, y);
+            // } else if ( x > 185 && x <= 199) {
+            //     y += 1;
+            //     drawRectAngle(x, y);
+            // } else {
+            //     drawRectAngle(x, y);
+            // }
+        }
+        function wayType2() {
+            if (x <= 50) {
+                drawRectAngle(x, y);
+            } else if ( x > 50 && x <= 60) {
+                y -= 3;
+                drawRectAngle(x, y);
+            } else if ( x > 60 && x <= 75) {
+                y += 5;
+                drawRectAngle(x, y);
+            } else if ( x > 75 && x <= 90) {
+                y -= 7;
+                drawRectAngle(x, y);
+            } else if ( x > 90 && x <= 102) {
+                y += 5;
+                drawRectAngle(x, y);
+            } else if ( x > 102 && x <= 198) {
+                drawRectAngle(x, y);
+            } else if ( x > 198 && x <= 210) {
+                y -= 3;
+                drawRectAngle(x, y);
+            } else if ( x > 210 && x <= 225) {
+                y += 5;
+                drawRectAngle(x, y);
+            } else if ( x > 225 && x <= 233) {
+                y -= 5;
+                drawRectAngle(x, y);
+            } else if ( x > 233 && x <= 500) {
+                drawRectAngle(x, y);
+            } else if ( x > 500 && x <= 510) {
+                y += 5;
+                drawRectAngle(x, y);
+            } else if ( x > 510 && x <= 520) {
+                y -= 5;
+                drawRectAngle(x, y);
+            } else if ( x > 520 && x <= 525) {
+                y -= 3;
+                drawRectAngle(x, y);
+            } else if ( x > 525 && x <= 530) {
+                y += 3;
+                drawRectAngle(x, y);
+            } else {
+                drawRectAngle(x, y);
+            }
+            // if ( x > 50 && x <= 60) {
+            //     y -= 3;
+            //     drawRectAngle(x, y);
+            // } else if ( x > 60 && x <= 75) {
+            //     y += 5;
+            //     drawRectAngle(x, y);
+            // } else if ( x > 75 && x <= 90) {
+            //     y -= 7;
+            //     drawRectAngle(x, y);
+            // } else if ( x > 90 && x <= 102) {
+            //     y += 5;
+            //     drawRectAngle(x, y);
+            // } else if ( x > 102 && x <= 198) {
+            //     drawRectAngle(x, y);
+            // } else if ( x > 198 && x <= 210) {
+            //     y -= 3;
+            //     drawRectAngle(x, y);
+            // } else if ( x > 210 && x <= 225) {
+            //     y += 5;
+            //     drawRectAngle(x, y);
+            // } else if ( x > 225 && x <= 233) {
+            //     y -= 5;
+            //     drawRectAngle(x, y);
+            // } else {
+            //     drawRectAngle(x, y);
+            // }
+        }
+        function wayType3() {
+            if (x <= 150) {
+                drawRectAngle(x, y);
+            } else if (x > 150 && x <= 155) {
+                y -= 1;
+                drawRectAngle(x, y);
+            } else if (x > 155 && x <= 160) {
+                y += 1;
+                drawRectAngle(x, y);
+            } else if (x > 160 && x <= 180) {
+                drawRectAngle(x, y);
+            } else if (x > 180 && x <= 190) {
+                y += 3;
+                drawRectAngle(x, y);
+            } else if (x > 190 && x <= 210) {
+                y -= 4;
+                drawRectAngle(x, y);
+            } else if (x > 210 && x <= 223) {
+                y += 4;
+                drawRectAngle(x, y);
+            } else if (x > 223 && x <= 400) {
+                drawRectAngle(x, y);
+            } else if (x > 400 && x <= 415) {
+                y += 3;
+                drawRectAngle(x, y);
+            } else if (x > 415 && x <= 435) {
+                y -= 5;
+                drawRectAngle(x, y);
+            } else if (x > 435 && x <= 453) {
+                y += 7;
+                drawRectAngle(x, y);
+            } else if (x > 453 && x <= 470) {
+                y -= 5;
+                drawRectAngle(x, y);
+            } else if (x > 470 && x <= 475) {
+                y += 3;
+                drawRectAngle(x, y);
+            } else if (x > 475 && x <= 600) {
+                drawRectAngle(x, y);
+            } else if (x > 600 && x <= 615) {
+                y -= 3;
+                drawRectAngle(x, y);
+            } else if (x > 615 && x <= 624) {
+                y += 7;
+                drawRectAngle(x, y);
+            } else if (x > 624 && x <= 629) {
+                y -= 4;
+                drawRectAngle(x, y);
+            } else {
+                drawRectAngle(x, y);
+            }
+            // if (x > 150 && x <= 155) {
+            //     y -= 1;
+            //     drawRectAngle(x, y);
+            // } else if (x > 155 && x <= 160) {
+            //     y += 1;
+            //     drawRectAngle(x, y);
+            // } else if (x > 160 && x <= 180) {
+            //     drawRectAngle(x, y);
+            // } else if (x > 180 && x <= 190) {
+            //     y += 3;
+            //     drawRectAngle(x, y);
+            // } else if (x > 190 && x <= 210) {
+            //     y -= 4;
+            //     drawRectAngle(x, y);
+            // } else if (x > 210 && x <= 223) {
+            //     y += 4;
+            //     drawRectAngle(x, y);
+            // } else {
+            //     drawRectAngle(x, y);
+            // }
+        }
+        function fuckOfWays() {
+            if (p) {
+                q = Math.floor(Math.random()*3+1);
+                p = false;
+            }
+            switch (q) {
+                case 1:
+                    wayType1();
+                    break;
+                case 2:
+                    wayType2();
+                    break;
+                case 3:
+                    wayType3();
+                    break;
+            }
+        }
+        function mainWayStyle() {
+            if ((x <= 50) || (x > 233 && x <= 329) || (x > 363 && x <= 400) || (x > 475 && x <= 500) || (x > 530 && x <= 600) || (x > 629 && x <= 700)) {
+                drawRectAngle(x, y);
+                p = true;
+            } else {
+                fuckOfWays();
+            }
+        }
+    </script>
+</html>
